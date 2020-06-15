@@ -6,7 +6,7 @@ class Header extends React.Component {
   }
   handleChange(event){
     this.props.onLanguageChange(event.target.value);
-    // console.log('JERE')
+    console.log('JERE')
   }
   render () {
    

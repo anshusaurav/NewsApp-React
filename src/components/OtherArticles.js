@@ -15,6 +15,10 @@ class OtherArticles extends React.Component{
                                 <div>
                                     <img src= {article.urlToImage} alt={article.title}/>
                                 </div>
+                                <div className='other-elem-header'>
+                                    <p className='source-name'>{article.source.name}</p>
+                                    <p className='published-date'>{article.publishedAt.substr(0,10)}</p>
+                                </div>
                                 <h4>{article.title}</h4>
                             </div>
                         )
