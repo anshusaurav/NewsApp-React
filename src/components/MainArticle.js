@@ -1,14 +1,7 @@
 import React from 'react'
 
 class MainArticle extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-  onError () {
-    this.setState({
-      imageUrl: '/images/no-images-found.png'
-    })
-  }
+  
   render () {
     let { article } = this.props
     if (!article) return <p>Loading</p>
@@ -17,7 +10,6 @@ class MainArticle extends React.Component {
         <div>
           <img
             src={article.urlToImage}
-            onError={this.onError.bind(this)}
             alt='Img'
           />
         </div>

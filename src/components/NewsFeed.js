@@ -26,7 +26,7 @@ class NewsFeed extends React.Component {
     return Math.random() * (max - min) + min;
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let {country, language, numResults} = this.state;
     fetch(
       `https://newsapi.org/v2/top-headlines?language=${language}&pageSize=${numResults}&apiKey=489e54aba24f43e6856558027b20d3fb`
