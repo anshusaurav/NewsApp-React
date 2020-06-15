@@ -1,9 +1,7 @@
 import React from 'react'
 
 class OtherArticles extends React.Component{
-    constructor(props){
-        super(props);
-    }
+    
     render(){
         var articles = this.props.articles;
         if(!articles)

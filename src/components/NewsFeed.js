@@ -10,7 +10,7 @@ class NewsFeed extends React.Component {
     super(props);
     this.state = {
       sourceIndex: null,
-      country: "us",
+      country: "uk",
       language: "en",
       numResults: 100,
       arrSource: null,
@@ -52,9 +52,9 @@ class NewsFeed extends React.Component {
 
   componentDidUpdate(_prevProps, prevState) {
     let {sourceIndex, arrSource} = this.state;
-    if (sourceIndex !== prevState.sourceIndex) {
+    if (sourceIndex !== prevState.sourceIndex && arrSource[sourceIndex].hasOwnProperty('id')) {
       fetch(
-        `https://newsapi.org/v2/everything?sources=${arrSource[sourceIndex].id}&language
+        `https://newsapi.org/v2/everything?sources=${arrSource[sourceIndex].id}&sortBy=popularity&language
 =${this.state.language}&apiKey=4119355f056f442084bade6aceedb37d`
       )
         .then((response) => response.json())

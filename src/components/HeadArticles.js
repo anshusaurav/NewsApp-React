@@ -1,8 +1,6 @@
 import React from 'react'
 class HeadArticles extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    
     render(){
         var articles = this.props.articles;
         if(!articles)

@@ -1,16 +1,13 @@
 import React from 'react'
 
 class MainArticle extends React.Component{
-    constructor(props){
-        super(props);
-    }
     
     render(){
         let {article}= this.props;
         if(!article)
             return <p>Loading</p>;
         return(
-            <div class='main-article'>
+            <div className='main-article'>
                 <div>
                     <img src={article.urlToImage} alt='Img'/>
                 </div>
