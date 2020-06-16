@@ -84,9 +84,13 @@ button:active {
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-gap: 1rem;
+    min-height: 360px;
+    .main-article-img-div{
+        height: 100%;
+    }
     img{
         width: 100%;
-        height: 200px;
+        height: 100%;
     }
     h4{
         font-size: 24px;

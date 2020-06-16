@@ -1,4 +1,5 @@
 import React from "react";
+
 import Header from "./Header";
 import NavBar from "./NavBar";
 import MainArticle from "./MainArticle";
@@ -27,7 +28,7 @@ class NewsFeed extends React.Component {
   }
 
   componentDidMount() {
-    let {country, language, numResults} = this.state;
+    let {language, numResults} = this.state;
     fetch(
       `https://newsapi.org/v2/top-headlines?language=${language}&pageSize=${numResults}&apiKey=489e54aba24f43e6856558027b20d3fb`
     )
@@ -78,7 +79,7 @@ class NewsFeed extends React.Component {
           console.error("Error:", error);
         });
     }
-    let {country, language, numResults} = this.state;
+    let {language, numResults} = this.state;
     if(language !== prevState.language) {
       fetch(
         `https://newsapi.org/v2/top-headlines?language=${language}&pageSize=${numResults}&apiKey=489e54aba24f43e6856558027b20d3fb`

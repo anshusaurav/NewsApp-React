@@ -1,4 +1,5 @@
 import React from 'react'
+import shortid from 'shortid'
 class NavBar extends React.Component {
   constructor (props) {
     super(props)
@@ -12,9 +13,10 @@ class NavBar extends React.Component {
     if (!sources) return <p>Loading</p>
     return (
       <div className='nav-bar'>
+        
         {sources.map((source, index) => {
           return (
-            <div>
+            <div key={shortid.generate()}>
               <button data-id={index} onClick={this.handleChange}>
                 {source.name}
               </button>

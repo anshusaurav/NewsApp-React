@@ -7,7 +7,7 @@ class MainArticle extends React.Component {
     if (!article) return <p>Loading</p>
     return (
       <div className='main-article'>
-        <div>
+        <div className='main-article-img-div'>
           <img
             src={article.urlToImage}
             alt='Img'

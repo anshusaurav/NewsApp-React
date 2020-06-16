@@ -1,5 +1,5 @@
 import React from 'react'
-
+import shortid from "shortid";
 class OtherArticles extends React.Component{
     
     render(){
@@ -11,7 +11,7 @@ class OtherArticles extends React.Component{
                 {
                     articles.map(article =>{
                         return (
-                            <div>
+                            <div key={shortid.generate()}>
                                 <div>
                                     <img src= {article.urlToImage} alt={article.title}/>
                                 </div>
