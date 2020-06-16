@@ -23,6 +23,7 @@ class NewsFeed extends React.Component {
     
     this.handleSourceChange = this.handleSourceChange.bind(this);
     this.handleLanguageChange = this.handleLanguageChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
   static getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
@@ -80,7 +81,7 @@ class NewsFeed extends React.Component {
           console.error("Error:", error);
         });
     }
-    let {language, numResults} = this.state;
+    let {language, numResults, searchText} = this.state;
     if(language !== prevState.language) {
       fetch(
         `https://newsapi.org/v2/top-headlines?language=${language}&pageSize=${numResults}&apiKey=489e54aba24f43e6856558027b20d3fb`
@@ -125,9 +126,31 @@ class NewsFeed extends React.Component {
           console.error("Error:", error);
         });
     }
+    if(searchText !== prevState.searchText) {
+      fetch(
+        `https://newsapi.org/v2/everything?q=${searchText}sources=${arrSource[sourceIndex].id}&sortBy=popularity&language
+=${this.state.language}&apiKey=489e54aba24f43e6856558027b20d3fb`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          
+          // console.log(this.state.refArticles);
+          return data.articles;
+          
+        }).then((arr) =>{
+          this.setState({ refArticles: arr });
+          let ind = Math.floor(NewsFeed.getRandomArbitrary(0, arr.length));
+          // console.log(ind, arr);
+          this.setState({mainArticle: arr[ind]});
+          // console.log('Main', this.state.mainArticle);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
 
   }
-  compo
+
   handleSourceChange(idorindex){
     this.setState({sourceIndex: idorindex});
 
@@ -137,12 +160,15 @@ class NewsFeed extends React.Component {
     this.setState({language: value});
 
   }
+  handleSearch(value) {
+    this.setState({searchText:value});
+  }
   render() {
     let {arrSource,refArticles, mainArticle,headlines, language, searchText} = this.state;
     return (
       <React.Suspense fallback={<div>Loading...</div>}>
         <div className='container'>
-          <Header value={language} searchText={searchText} onLanguageChange={this.handleLanguageChange}/>
+          <Header value={language} searchText={searchText} onSearch={this.handleSearch} onLanguageChange={this.handleLanguageChange}/>
           <NavBar sources={arrSource} onSourceChange={this.handleSourceChange}/>
           <div className='main-section'>
             <div className='highlight-section'>

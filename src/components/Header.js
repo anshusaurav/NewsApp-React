@@ -21,7 +21,9 @@ class Header extends React.Component {
   handleInitSearch(event) {
     if(event.key==='Enter')
       console.log('HERE want to search for ' + this.state.searchText);
-  }
+      if(this.state.searchText.trim().length !==   0)
+      this.props.onSearch(this.state.searchText);
+    }
   render () {
    
     return (
