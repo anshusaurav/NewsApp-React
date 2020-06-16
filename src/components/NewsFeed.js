@@ -4,7 +4,7 @@ import Header from "./Header";
 import NavBar from "./NavBar";
 import MainArticle from "./MainArticle";
 import HeadArticles from "./HeadArticles";
-import OtherArticles from "./OtherArticles";
+const OtherArticles = React.lazy(() =>import ("./OtherArticles"));
 
 class NewsFeed extends React.Component {
   constructor(props) {
@@ -17,7 +17,8 @@ class NewsFeed extends React.Component {
       arrSource: null,
       headlines: null,
       refArticles: null,
-      mainArticle: null
+      mainArticle: null,
+      searchText:''
     };
     
     this.handleSourceChange = this.handleSourceChange.bind(this);
@@ -137,22 +138,24 @@ class NewsFeed extends React.Component {
 
   }
   render() {
-    let {arrSource,refArticles, mainArticle,headlines, language} = this.state;
+    let {arrSource,refArticles, mainArticle,headlines, language, searchText} = this.state;
     return (
-      <div className='container'>
-        <Header value={language} onLanguageChange={this.handleLanguageChange}/>
-        <NavBar sources={arrSource} onSourceChange={this.handleSourceChange}/>
-        <div className='main-section'>
-          <div className='highlight-section'>
-         
-          <MainArticle article = {mainArticle} />
-          <OtherArticles articles = {refArticles}/>
-          </div>
-          <div className='headline-section'>
-            <HeadArticles articles={headlines}/>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <div className='container'>
+          <Header value={language} searchText={searchText} onLanguageChange={this.handleLanguageChange}/>
+          <NavBar sources={arrSource} onSourceChange={this.handleSourceChange}/>
+          <div className='main-section'>
+            <div className='highlight-section'>
+          
+            <MainArticle article = {mainArticle} />
+            <OtherArticles articles = {refArticles}/>
+            </div>
+            <div className='headline-section'>
+              <HeadArticles articles={headlines}/>
+            </div>
           </div>
         </div>
-      </div>
+      </React.Suspense>
     );
   }
 }

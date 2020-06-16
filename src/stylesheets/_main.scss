@@ -19,6 +19,14 @@ body{
     select{
         margin: 0.5rem 0;
     }
+    .header-options{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    form{
+        margin-right: 2rem;
+    }
     // grid-template-columns: auto 100px;
     // justify-content: space-between;
 }
