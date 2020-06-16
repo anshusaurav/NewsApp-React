@@ -12,7 +12,7 @@ class Header extends React.Component {
     this.props.onLanguageChange(event.target.value);
   }
   handleSubmit(event) {
-    console.log()
+    // console.log()
     event.preventDefault();
   }
   handleSearchTextChange(event) {
@@ -20,7 +20,7 @@ class Header extends React.Component {
   }
   handleInitSearch(event) {
     if(event.key==='Enter'){
-      console.log('HERE want to search for ' + this.state.searchText);
+      // console.log('HERE want to search for ' + this.state.searchText);
       if(this.state.searchText.trim().length !==   0)
       this.props.onSearch(this.state.searchText);
     }
@@ -32,7 +32,7 @@ class Header extends React.Component {
         <h1>GIZMO</h1>
         <div className='header-options'>
           <form onSubmit={this.handleSubmit}>
-            <input type="text" value={this.state.searchText} onChange={this.handleSearchTextChange} onKeyPress={this.handleInitSearch}/>
+            <input type="text" placeholder='Search' value={this.state.searchText} onChange={this.handleSearchTextChange} onKeyPress={this.handleInitSearch}/>
           </form>
           <select value={this.props.value} onChange={this.handleChange}>
             <option value="ar">AR</option>

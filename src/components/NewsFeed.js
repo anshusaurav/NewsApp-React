@@ -39,7 +39,7 @@ class NewsFeed extends React.Component {
       .then(data => {
         // console.log(data);
         data.articles = data.articles.slice(0, 15)
-        data.articles = data.articles.filter(elem => elem.urlToImage !== 'null')
+        // data.articles = data.articles.filter(elem => elem.urlToImage !== 'null')
         this.setState({ headlines: data.articles })
       })
       .catch(error => {
@@ -75,7 +75,7 @@ class NewsFeed extends React.Component {
           return data.articles
         })
         .then(arr => {
-          arr = arr.filter(elem => elem.urlToImage !== 'null')
+          arr = arr.filter(elem => elem.urlToImage !== 'null'&&elem.urlToImage !==null);
           let ind = Math.floor(NewsFeed.getRandomArbitrary(0, arr.length))
           this.setState({ refArticles: arr, mainArticle: arr[ind] }, ()=>{
             
@@ -85,7 +85,7 @@ class NewsFeed extends React.Component {
           console.error('Error:', error)
         })
     }
-    let { language, numResults, searchText } = this.state
+    let { language, numResults, searchText } = this.state;
     if (language !== prevState.language) {
       fetch(
         `https://newsapi.org/v2/top-headlines?language=${language}&pageSize=${numResults}&apiKey=4119355f056f442084bade6aceedb37d`
@@ -105,7 +105,7 @@ class NewsFeed extends React.Component {
         .then(response => response.json())
         .then(data => {
           this.setState({ arrSource: data.sources, sourceIndex: 0 }, () => {
-            console.log('Isupdated', this.state.language)
+            console.log('Isupdated', this.state.language);
             console.log(this.state.arrSource, this.state.sourceIndex)
             fetch(
               `https://newsapi.org/v2/everything?sources=${
@@ -119,7 +119,8 @@ class NewsFeed extends React.Component {
                 return data.articles
               })
               .then(arr => {
-                console.log(language, arr)
+                console.log(language, arr);
+                arr = arr.filter(elem => elem.urlToImage !== 'null'&&elem.urlToImage !==null)
                 let ind = Math.floor(NewsFeed.getRandomArbitrary(0, arr.length))
                 this.setState(
                   { refArticles: arr, mainArticle: arr[ind] },
@@ -168,7 +169,7 @@ class NewsFeed extends React.Component {
     this.setState({ sourceIndex: idorindex })
   }
   handleLanguageChange (value) {
-    console.log(value)
+    // console.log(value)
     this.setState({ language: value })
   }
   handleSearch (value) {
@@ -182,7 +183,7 @@ class NewsFeed extends React.Component {
       headlines,
       language,
       searchText
-    } = this.state
+    } = this.state;
     return (
       <React.Suspense fallback={<div>Loading...</div>}>
         <div className='container'>
@@ -198,8 +199,8 @@ class NewsFeed extends React.Component {
           />
           <div className='main-section'>
             <div className='highlight-section'>
-              <MainArticle article={mainArticle} />
-              <OtherArticles articles={refArticles} />
+              <MainArticle article={this.state.mainArticle} />
+              <OtherArticles articles={this.state.refArticles} />
             </div>
             <div className='headline-section'>
               <HeadArticles articles={headlines} />
