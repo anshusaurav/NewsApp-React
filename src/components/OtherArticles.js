@@ -5,14 +5,18 @@ class OtherArticles extends React.Component{
     render(){
         var articles = this.props.articles;
         if(!articles)
-            return <p>Loading</p>;
+            return (
+                <div className='loading-div'>
+                  <img src="https://i.imgur.com/CsQmaeM.gif" />
+                </div>
+              )
         return (
             <div className='other-articles'>
                 {
                     articles.map(article =>{
                         return (
                             <div key={shortid.generate()}>
-                                <div>
+                                <div className='other-article-img-div'>
                                     <img src= {article.urlToImage} alt={article.title}/>
                                 </div>
                                 <div className='other-elem-header'>

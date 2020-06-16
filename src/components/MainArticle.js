@@ -4,13 +4,17 @@ class MainArticle extends React.Component {
   
   render () {
     let { article } = this.props
-    if (!article) return <p>Loading</p>
+    if (!article) return (
+      <div className='loading-div'>
+        <img src="https://i.imgur.com/CsQmaeM.gif" />
+      </div>
+    )
     return (
       <div className='main-article'>
         <div className='main-article-img-div'>
           <img
             src={article.urlToImage}
-            alt='Img'
+            alt={article.title}
           />
         </div>
         <div>

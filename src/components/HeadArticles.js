@@ -3,7 +3,11 @@ import shortid from "shortid";
 class HeadArticles extends React.Component {
   render () {
     var articles = this.props.articles
-    if (!articles) return <p>Loading</p>
+    if (!articles) return (
+      <div className='loading-div'>
+        <img src="https://i.imgur.com/CsQmaeM.gif" />
+      </div>
+    )
     return (
       <>
         <h2>Headlines</h2>

@@ -10,7 +10,11 @@ class NavBar extends React.Component {
   }
   render () {
     var sources = this.props.sources
-    if (!sources) return <p>Loading</p>
+    if (!sources) return (
+      <div className='loading-div'>
+        <img src="https://i.imgur.com/CsQmaeM.gif" />
+      </div>
+    )
     return (
       <div className='nav-bar'>
         
